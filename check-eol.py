@@ -11,7 +11,6 @@ from datetime import datetime
 #                                                                                #
 ####                                                                          ####
 
-
 # STATES
 OK = 0
 WARNING = 1
@@ -25,7 +24,7 @@ message = {
     'perfdata': 'label1=0;;;; '
 }
 
-
+# API Check
 def check(hostOS, hostOSVers):
     os_data = requests.get(
         "https://endoflife.date/api/" + hostOS + ".json").text
@@ -53,11 +52,11 @@ def check(hostOS, hostOSVers):
 
 hostOs = "debian"
 hostOSVers = "10.11"
-message['status'] = check(hostOs, hostOSVers)
+
 
 # Output to Icinga
+message['status'] = check(hostOs, hostOSVers)
 print("{summary}".format(
     summary=message.get('summary'),
 ))
-
 raise SystemExit(message['status'])
