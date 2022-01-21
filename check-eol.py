@@ -43,6 +43,8 @@ def check(distribution, distributionVers):
             version = el["latest"]
         elif distribution in ("opensuse"):
             version = el["cycleShortHand"]
+        else:
+            version = el["latest"]
         if str(distributionVers) in str(version) or str(version) in str(distributionVers):
             present = datetime.now().date()
             eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
