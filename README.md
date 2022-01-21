@@ -15,10 +15,12 @@ The Plugin will query the [endoflife.date](https://endoflife.date) API and check
 
 You can pass the following options: 
 
-| Option                | Description                            |
-| --------------------- | -------------------------------------- |
-| --os `<name>`         | Specify the Distribution, e.g `debian` |
-| --version `<version>` | Specify the OS Version, e.g `11.2`     |
+| Option                    | Description                                   |
+| ------------------------- | --------------------------------------------- |
+| --distro `<distribution>` | Specify the Distribution, e.g `debian`        |
+| --version `<version>`     | Specify the OS Version, e.g `11.2`            |
+| --name `<pretty name>`    | Specify the Pretty Name of the distribution   |
+| --homepage `<URL>`        | Specify the Homepage URL of your distribution |
 
 To programatically find these needed values, you can use the following commands (might differ depending on your distribution): 
 
