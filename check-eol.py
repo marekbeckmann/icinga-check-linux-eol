@@ -43,7 +43,7 @@ def check(distribution, distributionVers):
                 version = el["latest"]
             elif distribution in ("opensuse"):
                 version = el["cycleShortHand"]
-            if float(distributionVers) >= float(version):  # Test Change
+            if round(float(distributionVers)) == round(float(version)):  # Test Change
                 present = datetime.now().date()
                 eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
                 if eoldate > present:
