@@ -10,6 +10,9 @@ function getInfo() {
     name=${PRETTY_NAME}
     homepage=${HOME_URL}
 
+    if [[ "$distro" == *"suse"* ]]; then
+        distro="opensuse"
+    fi
 }
 
 function checkStatus() {
