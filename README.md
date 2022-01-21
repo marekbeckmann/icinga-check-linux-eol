@@ -30,10 +30,10 @@ You can pass the following options to `check-eol.py`:
 
 | Option                    | Description                                   | Required |
 | ------------------------- | --------------------------------------------- | -------- |
-| --distro `<distribution>` | Specify the Distribution, e.g `debian`        | [x]      |
-| --version `<version>`     | Specify the OS Version, e.g `11.2`            | [x]      |
-| --name `<pretty name>`    | Specify the Pretty Name of the distribution   | [ ]      |
-| --homepage `<URL>`        | Specify the Homepage URL of your distribution | [ ]      |
+| --distro `<distribution>` | Specify the Distribution, e.g `debian`        | ✅        |
+| --version `<version>`     | Specify the OS Version, e.g `11.2`            | ✅        |
+| --name `<pretty name>`    | Specify the Pretty Name of the distribution   | ❌        |
+| --homepage `<URL>`        | Specify the Homepage URL of your distribution | ❌        |
 
 E.g: 
 ```
