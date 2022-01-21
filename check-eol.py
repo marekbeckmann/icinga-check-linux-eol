@@ -38,27 +38,27 @@ def check(distribution, distributionVers):
         message['summary'] = 'Distribution not in Database'
         return status
     for el in os_data:
-        try:
-            if distribution in ("debian", "centos", "rhel"):
-                version = el["latest"]
-            elif distribution in ("opensuse"):
-                version = el["cycleShortHand"]
-            if str(distributionVers) in str(version) or str(version) in str(distributionVers):  # Test Change
-                present = datetime.now().date()
-                eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
-                if eoldate > present:
-                    status = OK
-                    message['summary'] = 'EOL: ' + el["eol"]
-                    break
-                else:
-                    status = CRITICAL
-                    message['summary'] = 'EOL: ' + el["eol"]
-                    break
+        # try:
+        if distribution in ("debian", "centos", "rhel"):
+            version = el["latest"]
+        elif distribution in ("opensuse"):
+            version = el["cycleShortHand"]
+        if str(distributionVers) in str(version) or str(version) in str(distributionVers):
+            present = datetime.now().date()
+            eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
+            if eoldate > present:
+                status = OK
+                message['summary'] = 'EOL: ' + el["eol"]
+                break
             else:
-                status = UNKNOWN
-                message['summary'] = 'OS Version not in Database'
-        except:
-            pass
+                status = CRITICAL
+                message['summary'] = 'EOL: ' + el["eol"]
+                break
+        else:
+            status = UNKNOWN
+            message['summary'] = 'OS Version not in Database'
+        # except:
+        #    pass
     return status
 
 
@@ -82,7 +82,7 @@ def args():
         help="Specify the exact version of your distribution",
         required=True,
         action='store',
-        type=float
+        type=str
     )
 
     parser.add_argument(
