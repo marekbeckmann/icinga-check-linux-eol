@@ -12,13 +12,12 @@ function getInfo() {
 
     if [[ "$distro" == *"suse"* ]]; then
         distro="opensuse"
+    elif [[ "$distro" == *"debian"* ]]; then
+        version="$(cat /etc/debian_version)"
     fi
 }
 
 function checkStatus() {
-    if [[ distro == *"debian"* ]]; then
-        version="$(cat /etc/debian_version)"
-    fi
     if [[ -f check-eol.py ]]; then
         if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
             python3 check-eol.py --help
