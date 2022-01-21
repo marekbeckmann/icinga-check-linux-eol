@@ -116,7 +116,8 @@ try:
 except:
     message['summary'] += "\nOS: Unknown | add --name"
     message['summary'] += "\nHomepage: Unknown | add --web"
-message['summary'] += "More lifecyle info: https://endoflife.date/" + distribution
+
+message['summary'] += "\nMore lifecyle info: https://endoflife.date/" + distribution
 print("{summary}".format(
     summary=message.get('summary'),
 ))
