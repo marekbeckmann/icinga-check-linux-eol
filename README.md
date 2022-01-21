@@ -42,7 +42,6 @@ python3 check-eol.py --distro debian --version 11.3
 
 It is recommended, to programatically determine the needed variables (e.g using Bash), especially the version information. Here are some pointers on how to determine version information for most linux distributions: 
 
-For the OS: 
 ```bash
 . /etc/os-release
 echo "Distribution: ${ID}"
