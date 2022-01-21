@@ -57,3 +57,14 @@ If you don't want to worry about finding out the needed info, you can specify th
 - `--version` => `${VERSION_ID}` (`/etc/debian_version` for Debian)
 - `--name` => `${PRETTY_NAME}` 
 - `--homepage` => `${HOME_URL}`
+
+## 3. Current State
+As of now, this script has been tested with the following distributions: 
+
+| Distribution       | Supported by API | Works properly |
+| ------------------ | ---------------- | -------------- |
+| Debian Bullseye    | ✅                | ✅              |
+| Debian Buster      | ✅                | ✅              |
+| Centos 7           | ✅                | ❌              |
+| Alma Linux         | ❌                | ✅              |
+| OpenSUSE Leap 15.3 | ✅                | ✅              |
