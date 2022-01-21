@@ -115,5 +115,4 @@ except:
 print("{summary}".format(
     summary=message.get('summary'),
 ))
-print(message['status'])
 raise SystemExit(message['status'])
