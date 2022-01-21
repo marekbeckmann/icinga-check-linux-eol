@@ -105,13 +105,14 @@ distributionWeb = args.homepage
 
 
 # Output to Icinga
-message['status'] = check(distribution, distributionVers)
+
 try:
     message['summary'] += "\nOS: " + distributionName
     message['summary'] += "\nHomepage: " + distributionWeb
 except:
     message['summary'] += "\nOS: Unknown | add --name"
     message['summary'] += "\nHomepage: Unknown | add --web"
+message['status'] = check(distribution, distributionVers)
 print("{summary}".format(
     summary=message.get('summary'),
 ))
