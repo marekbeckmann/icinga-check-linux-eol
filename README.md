@@ -15,10 +15,10 @@ The Plugin will query the [endoflife.date](https://endoflife.date) API and check
 
 You can pass the following options: 
 
-| Option | Description |
-|--|--|
-| --os `<name>` | Specify the Distribution, e.g `debian` |
-| --version `<version>` | Specify the OS Version, e.g `11.2` |
+| Option                | Description                            |
+| --------------------- | -------------------------------------- |
+| --os `<name>`         | Specify the Distribution, e.g `debian` |
+| --version `<version>` | Specify the OS Version, e.g `11.2`     |
 
 To programatically find these needed values, you can use the following commands (might differ depending on your distribution): 
 
@@ -32,3 +32,6 @@ For the Version:
 cat /etc/debian_release
 ```
 
+## 3. Running without parameters
+
+You can run the script without parameters, using the provided Bash-Script, that does it for you. The Script will extract all needed information from your system and pass it to the Pyton Check-Script. You will have to specify the Bash-Script as Plugin, not the Python script.
