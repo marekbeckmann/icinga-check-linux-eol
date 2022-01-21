@@ -68,4 +68,4 @@ As of now, this script has been tested with the following distributions:
 | Centos 7           | ✅                | ✅              |
 | Alma Linux         | ❌                | ✅              |
 | OpenSUSE Leap 15.3 | ✅                | ✅              |
-| Ubuntu 20.04 LTS   | ✅                | ❌              |
+| Ubuntu 20.04 LTS   | ✅                | ✅              |
