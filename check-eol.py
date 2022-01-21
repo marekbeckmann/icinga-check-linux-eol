@@ -33,7 +33,12 @@ def check(distribution, distributionVers):
     os_data = json.loads(os_data)
     for el in os_data:
         try:
-            if distributionVers == el["latest"]:
+            match distribution:
+                case "debian" | "centos" | "rhel":
+                    version = el["latest"]
+                case "opensuse":
+                    version = el["cycleShortHand"]
+            if float(distributionVers) == version:
                 present = datetime.now().date()
                 eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
                 if eoldate > present:
@@ -42,7 +47,7 @@ def check(distribution, distributionVers):
                     break
                 else:
                     status = CRITICAL
-                    message['summary'] = 'EOL: ' + eoldate
+                    message['summary'] = 'EOL: ' + el["eol"]
                     break
             else:
                 status = UNKNOWN
@@ -72,7 +77,7 @@ def args():
         help="Specify the exact version of your distribution",
         required=True,
         action='store',
-        type=str
+        type=float
     )
 
     parser.add_argument(
