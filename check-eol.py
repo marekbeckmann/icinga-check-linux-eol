@@ -102,6 +102,7 @@ distributionVers = args.version
 distributionName = args.name
 distributionWeb = args.homepage
 
+
 # Output to Icinga
 message['status'] = check(distribution, distributionVers)
 try:
