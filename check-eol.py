@@ -28,11 +28,15 @@ message = {
 
 
 def check(distribution, distributionVers):
-    os_data = requests.get(
-        "https://endoflife.date/api/" + distribution + ".json").text
-    os_data = json.loads(os_data)
-    status = UNKNOWN
-
+    try:
+        os_data = requests.get(
+            "https://endoflife.date/api/" + distribution + ".json").text
+        os_data = json.loads(os_data)
+        status = UNKNOWN
+    except:
+        status = UNKNOWN
+        message['summary'] = 'Distribution not in Database'
+        return status
     for el in os_data:
         try:
             if distribution in ("debian", "centos", "rhel"):
