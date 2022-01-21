@@ -2,7 +2,7 @@
 import requests
 import json
 import sys
-import platform
+import argparse
 from datetime import datetime
 
 ####                                                                          ####
@@ -27,13 +27,13 @@ message = {
 # API Check
 
 
-def check(hostOS, hostOSVers):
+def check(distribution, distributionVers):
     os_data = requests.get(
-        "https://endoflife.date/api/" + hostOS + ".json").text
+        "https://endoflife.date/api/" + distribution + ".json").text
     os_data = json.loads(os_data)
     for el in os_data:
         try:
-            if hostOSVers == el["latest"]:
+            if distributionVers == el["latest"]:
                 present = datetime.now().date()
                 eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
                 if eoldate > present:
@@ -52,12 +52,59 @@ def check(hostOS, hostOSVers):
     return status
 
 
-hostOs = "debian"
-hostOSVers = "10.11"
+parser = argparse.ArgumentParser(
+    prog=sys.argv[0],
+    description='Icinga/Nagios EOL Check Script',
+    epilog="Thanks for using my Plugin. \nDocumentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
+)
 
+parser.add_argument(
+    "--distro",
+    help="Specify the distribution. Make sure it exists in the API",
+    required=True,
+    action='store',
+    type=str
+)
+
+parser.add_argument(
+    "--version",
+    help="Specify the exact version of your distribution",
+    required=True,
+    action='store',
+    type=str
+)
+
+parser.add_argument(
+    "--name",
+    help="Pretty Name of your distribution",
+    action='store',
+    type=str
+)
+
+parser.add_argument(
+    "--homepage",
+    help="Homepage of your Distribution",
+    action='store',
+    type=str
+)
+
+args = parser.parse_args()
+
+distribution = args.distro
+distributionVers = args.version
+distributionName = args.name
+distributionWeb = args.homepage
+
+print(distribution, distributionVers, distributionName, distributionWeb)
 
 # Output to Icinga
-message['status'] = check(sys.argv[1], sys.argv[2])
+message['status'] = check(distribution, distributionVers)
+try:
+    message['summary'] += "OS: " + distributionName
+    message['summary'] += "Homepage: " + distributionWeb
+except:
+    message['summary'] += "OS: Unknown | add --name"
+    message['summary'] += "Homepage: Unknown | add --web"
 print("{summary}".format(
     summary=message.get('summary'),
 ))

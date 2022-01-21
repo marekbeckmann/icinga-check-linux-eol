@@ -17,7 +17,7 @@ function checkStatus() {
         version="$(cat /etc/debian_version)"
     fi
     if [[ -f check-eol.py ]]; then
-        python3 check-eol.py "$distro" "$version" "$name" "$homepage"
+        python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage"
     else
         echo "Plugin corrputed"
         exit 1
