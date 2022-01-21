@@ -58,6 +58,12 @@ If you don't want to worry about finding out the needed info, you can specify th
 - `--name` => `${PRETTY_NAME}` 
 - `--homepage` => `${HOME_URL}`
 
+E.g for a quick test-run, you can use the following: 
+```bash
+git clone https://github.com/marekbeckmann/icinga-check-linux-eol.git && \
+bash icinga-check-linux-eol/check-eol.sh
+```
+
 ## 3. Current State
 As of now, this script has been tested with the following distributions: 
 
