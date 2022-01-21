@@ -5,11 +5,11 @@ import sys
 import argparse
 from datetime import datetime
 
-####                                                                           ####
-#                                                                                 #
-#  Volle Dokumentation: https://github.csom/marekbeckmann/icinga-check-linux-eol  #
-#                                                                                 #
-####                                                                           ####
+####                                                                          ####
+#                                                                                #
+#  Volle Dokumentation: https://github.com/marekbeckmann/icinga-check-linux-eol  #
+#                                                                                #
+####                                                                          ####
 
 # STATES
 OK = 0
