@@ -65,6 +65,6 @@ As of now, this script has been tested with the following distributions:
 | ------------------ | ---------------- | -------------- |
 | Debian Bullseye    | ✅                | ✅              |
 | Debian Buster      | ✅                | ✅              |
-| Centos 7           | ✅                | ❌              |
+| Centos 7           | ✅                | ✅              |
 | Alma Linux         | ❌                | ✅              |
 | OpenSUSE Leap 15.3 | ✅                | ✅              |
