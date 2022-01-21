@@ -7,7 +7,7 @@ from datetime import datetime
 
 ####                                                                          ####
 #                                                                                #
-#  Volle Dokumentation: https://github.com/marekbeckmann/icinga-check-linux-eol  #
+#  Volle Dokumentation: https://github.csom/marekbeckmann/icinga-check-linux-eol  #
 #                                                                                #
 ####                                                                          ####
 
@@ -25,6 +25,8 @@ message = {
 }
 
 # API Check
+
+
 def check(hostOS, hostOSVers):
     os_data = requests.get(
         "https://endoflife.date/api/" + hostOS + ".json").text
@@ -55,7 +57,7 @@ hostOSVers = "10.11"
 
 
 # Output to Icinga
-message['status'] = check(hostOs, hostOSVers)
+message['status'] = check(sys.argv[1], sys.argv[2])
 print("{summary}".format(
     summary=message.get('summary'),
 ))
