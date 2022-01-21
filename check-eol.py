@@ -5,11 +5,11 @@ import sys
 import argparse
 from datetime import datetime
 
-####                                                                          ####
-#                                                                                #
+####                                                                           ####
+#                                                                                 #
 #  Volle Dokumentation: https://github.csom/marekbeckmann/icinga-check-linux-eol  #
-#                                                                                #
-####                                                                          ####
+#                                                                                 #
+####                                                                           ####
 
 # STATES
 OK = 0
@@ -31,14 +31,15 @@ def check(distribution, distributionVers):
     os_data = requests.get(
         "https://endoflife.date/api/" + distribution + ".json").text
     os_data = json.loads(os_data)
+    status = UNKNOWN
+
     for el in os_data:
         try:
-            match distribution:
-                case "debian" | "centos" | "rhel":
-                    version = el["latest"]
-                case "opensuse":
-                    version = el["cycleShortHand"]
-            if float(distributionVers) == version:
+            if distribution in ("debian", "centos", "rhel"):
+                version = el["latest"]
+            elif distribution in ("opensuse"):
+                version = el["cycleShortHand"]
+            if float(distributionVers) == float(version):
                 present = datetime.now().date()
                 eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
                 if eoldate > present:
@@ -114,4 +115,5 @@ except:
 print("{summary}".format(
     summary=message.get('summary'),
 ))
+print(message['status'])
 raise SystemExit(message['status'])

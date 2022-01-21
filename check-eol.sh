@@ -30,3 +30,6 @@ function checkStatus() {
         exit 1
     fi
 }
+
+getInfo
+checkStatus "$@"
