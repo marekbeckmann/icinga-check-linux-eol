@@ -55,10 +55,12 @@ function init() {
         if [[ "$help" == true ]]; then
             python3 check-eol.py --help
         else
+            cd "$workingDir" || echo "Plugin Directory doesn't exist" && exit 1
             getInfo
             checkStatus "$@"
         fi
     else
+        echo "You did not specify a Plugin Directory" && exit 1
     fi
 }
 
