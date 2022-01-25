@@ -2,6 +2,29 @@
 
 #Wrapper Script for check-eol.py
 
+function get_Params() {
+    while test $# -gt 0; do
+        case "$1" in
+        -h | --help)
+            help=true
+            exit 0
+            ;;
+        -d | --dir)
+            workingDir="$2"
+            ;;
+        --*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        -*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        esac
+        shift
+    done
+}
+
 function getInfo() {
 
     . /etc/os-release
@@ -19,16 +42,26 @@ function getInfo() {
 
 function checkStatus() {
     if [[ -f check-eol.py ]]; then
-        if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
-            python3 check-eol.py --help
-        else
-            python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage"
-        fi
+        python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage"
     else
         echo "Plugin corrputed"
         exit 1
     fi
 }
 
-getInfo
-checkStatus "$@"
+function init() {
+    get_Params "$@"
+    if [[ -n "$workingDir" ]]; then
+        if [[ "$help" == true ]]; then
+            python3 check-eol.py --help
+        else
+            cd "$workingDir" || echo "Plugin Directory doesn't exist" && exit 1
+            getInfo
+            checkStatus "$@"
+        fi
+    else
+        echo "You did not specify a Plugin Directory" && exit 1
+    fi
+}
+
+init "$@"
