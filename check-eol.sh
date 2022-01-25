@@ -7,7 +7,6 @@ function get_Params() {
         case "$1" in
         -h | --help)
             help=true
-            exit 0
             ;;
         -d | --dir)
             workingDir="$2"
@@ -53,14 +52,16 @@ function init() {
     get_Params "$@"
     if [[ -n "$workingDir" ]]; then
         if [[ "$help" == true ]]; then
-            python3 check-eol.py --help
+            echo "Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
+            exit 0
         else
-            cd "$workingDir" || echo "Plugin Directory doesn't exist" && exit 1
+            cd "$workingDir" || exit 1
             getInfo
-            checkStatus "$@"
+            checkStatus
         fi
     else
-        echo "You did not specify a Plugin Directory" && exit 1
+        echo "Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
+        exit 1
     fi
 }
 
