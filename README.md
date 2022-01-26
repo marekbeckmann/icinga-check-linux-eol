@@ -67,7 +67,7 @@ You can use the following options running the script:
 
 | Option                     | Description                                             | Required |
 | -------------------------- | ------------------------------------------------------- | -------- |
-| `-d` `--dir ``<directory>` | Specify the working directory, e.g `/opt/nagiosplugins` | ❌        |
+| `-d` `--dir` `<directory>` | Specify the working directory, e.g `/opt/nagiosplugins` | ❌        |
 | `-h` `--help`              | Print a help message                                    | ❌        |
 
 
@@ -85,7 +85,7 @@ object CheckCommand "check-eol" {
 Using the Python script: 
 ```php
 object CheckCommand "check-eol" {
-  command = [ PluginDir + "/check-eol.sh" ]
+  command = [ PluginDir + "/check-eol.py" ]
   arguments += {
       "--distro" = "debian"
       "--version" = "11.2"
