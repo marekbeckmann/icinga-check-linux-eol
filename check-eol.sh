@@ -6,18 +6,18 @@ function get_Params() {
     while test $# -gt 0; do
         case "$1" in
         -h | --help)
-            help=true
+            helpMsg
             ;;
         -d | --dir)
             workingDir="$2"
             ;;
         --*)
             echo "Unknown option $1"
-            exit 1
+            exit 2
             ;;
         -*)
             echo "Unknown option $1"
-            exit 1
+            exit 2
             ;;
         esac
         shift
@@ -44,25 +44,36 @@ function checkStatus() {
         python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage"
     else
         echo "Plugin corrputed"
-        exit 1
+        exit 2
     fi
+}
+
+function helpMsg() {
+    printf "
+usage: check-eol.py [-h] --distro DISTRO --version VERSION [--name NAME] [--homepage HOMEPAGE]
+
+Icinga/Nagios EOL Check Script
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --distro DISTRO      Specify the distribution. Make sure it exists in the API
+  --version VERSION    Specify the exact version of your distribution
+  --name NAME          Pretty Name of your distribution
+  --homepage HOMEPAGE  Homepage of your Distribution
+
+Thanks for using my Plugin. Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
+    exit 3
 }
 
 function init() {
     get_Params "$@"
     if [[ -n "$workingDir" ]]; then
-        if [[ "$help" == true ]]; then
-            echo "Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
-            exit 0
-        else
-            cd "$workingDir" || exit 1
-            getInfo
-            checkStatus
-        fi
+        cd "$workingDir" || exit 2
     else
-        echo "Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
-        exit 1
+        cd "$(dirname "$0")" || exit 2
     fi
+    getInfo
+    checkStatus
 }
 
 init "$@"
