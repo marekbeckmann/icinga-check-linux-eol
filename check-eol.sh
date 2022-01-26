@@ -61,7 +61,8 @@ optional arguments:
   --name NAME          Pretty Name of your distribution
   --homepage HOMEPAGE  Homepage of your Distribution
 
-Thanks for using my Plugin. Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol"
+Thanks for using my Plugin. Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol
+"
     exit 3
 }
 
