@@ -127,10 +127,11 @@ distribution = args.distro
 distributionVers = args.version
 distributionName = args.name
 distributionWeb = args.homepage
-proxyDict = { 
-    "http"  : args.http_proxy,
-    "https" : args.https_proxy,
-    }
+if bool(args.http_proxy) or bool(args.https_proxy):
+    proxyDict = { 
+        "http"  : args.http_proxy,
+        "https" : args.https_proxy,
+        }
 
 # Output to Icinga
 
