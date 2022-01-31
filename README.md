@@ -28,14 +28,14 @@ pip3 -q install requests
 
 You can pass the following options to `check-eol.py`: 
 
-| Option                      | Description                                   | Required |
-| --------------------------- | --------------------------------------------- | -------- |
-| `--distro` `<distribution>` | Specify the distribution, e.g `debian`        | ✅        |
-| `--version` `<version>`     | Specify the OS version, e.g `11.2`            | ✅        |
-| `--name` `<pretty name>`    | Specify the "Pretty Name" of the distribution | ❌        |
-| `--homepage` `<URL>`        | Specify the Homepage URL of your distribution | ❌        |
-| `-h` `--help`               | Print a help message                          | ❌        |
-
+| Option                                 | Description                                   | Required |
+| -------------------------------------- | --------------------------------------------- | -------- |
+| `--distro` `<distribution>`            | Specify the distribution, e.g `debian`        | ✅        |
+| `--version` `<version>`                | Specify the OS version, e.g `11.2`            | ✅        |
+| `--name` `<pretty name>`               | Specify the "Pretty Name" of the distribution | ❌        |
+| `--homepage` `<URL>`                   | Specify the Homepage URL of your distribution | ❌        |
+| `--http_proxy` `--https_proxy` `<URL>` | Specify a proxy server for API requests       | ❌        |
+| `-h` `--help`                          | Print a help message                          | ❌        |
 E.g: 
 ```
 python3 check-eol.py --distro debian --version 11.3
@@ -65,10 +65,11 @@ bash icinga-check-linux-eol/check-eol.sh
 ```
 You can use the following options running the script: 
 
-| Option                     | Description                                             | Required |
-| -------------------------- | ------------------------------------------------------- | -------- |
-| `-d` `--dir` `<directory>` | Specify the working directory, e.g `/opt/nagiosplugins` | ❌        |
-| `-h` `--help`              | Print a help message                                    | ❌        |
+| Option                                 | Description                                             | Required |
+| -------------------------------------- | ------------------------------------------------------- | -------- |
+| `-d` `--dir` `<directory>`             | Specify the working directory, e.g `/opt/nagiosplugins` | ❌        |
+| `--http_proxy` `--https_proxy` `<URL>` | Specify a proxy server for API requests                 | ❌        |
+| `-h` `--help`                          | Print a help message                                    | ❌        |
 
 
 ## 3. Icinga Check Command

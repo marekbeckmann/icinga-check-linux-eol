@@ -47,7 +47,7 @@ function getInfo() {
 
 function checkStatus() {
     if [[ -f check-eol.py ]]; then
-        python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage" --http_proxy "$httpProxy" -https_proxy "$httpsProxy"
+        python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage" --http_proxy "$httpProxy" --https_proxy "$httpsProxy"
     else
         echo "Plugin corrputed"
         exit 2
@@ -66,7 +66,8 @@ optional arguments:
   --version VERSION    Specify the exact version of your distribution
   --name NAME          Pretty Name of your distribution
   --homepage HOMEPAGE  Homepage of your Distribution
-
+  --http_proxy PROXY   HTTP Proxy
+  --https_Proxy PROXY  HTTPS Proxy
 Thanks for using my Plugin. Documentation: https://github.com/marekbeckmann/icinga-check-linux-eol
 "
     exit 3

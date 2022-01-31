@@ -30,8 +30,11 @@ message = {
 def check(distribution, distributionVers,proxyDict):
     
     try:
-        os_data = requests.get(
-            "https://endoflife.date/api/" + distribution + ".json",proxies=proxyDict).text
+        if bool(proxyDict):
+            os_data = requests.get("https://endoflife.date/api/" + distribution + ".json",proxies=proxyDict).text
+        else:
+            os_data = requests.get("https://endoflife.date/api/" + distribution + ".json").text
+        
         os_data = json.loads(os_data)
         status = UNKNOWN
     except:
@@ -106,11 +109,13 @@ def args():
     parser.add_argument(
         "--http_proxy",
         action='store',
+        required=False,
         type=str
     )
     parser.add_argument(
         "--https_proxy",
         action='store',
+        required=False,
         type=str
     )
 
