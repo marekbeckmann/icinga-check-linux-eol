@@ -11,6 +11,12 @@ function get_Params() {
         -d | --dir)
             workingDir="$2"
             ;;
+        --http_proxy)
+            httpProxy="$2"
+            ;;
+        --https_proxy)
+            httpsProxy="$2"
+            ;;
         --*)
             echo "Unknown option $1"
             exit 2
@@ -41,7 +47,7 @@ function getInfo() {
 
 function checkStatus() {
     if [[ -f check-eol.py ]]; then
-        python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage"
+        python3 check-eol.py --distro "$distro" --version "$version" --name "$name" --homepage "$homepage" --http_proxy "$httpProxy" -https_proxy "$httpsProxy"
     else
         echo "Plugin corrputed"
         exit 2

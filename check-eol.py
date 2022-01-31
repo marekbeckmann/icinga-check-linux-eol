@@ -27,10 +27,11 @@ message = {
 # API Check
 
 
-def check(distribution, distributionVers):
+def check(distribution, distributionVers,proxyDict):
+    
     try:
         os_data = requests.get(
-            "https://endoflife.date/api/" + distribution + ".json").text
+            "https://endoflife.date/api/" + distribution + ".json",proxies=proxyDict).text
         os_data = json.loads(os_data)
         status = UNKNOWN
     except:
@@ -102,6 +103,17 @@ def args():
         action='store',
         type=str
     )
+    parser.add_argument(
+        "--http_proxy",
+        action='store',
+        type=str
+    )
+    parser.add_argument(
+        "--https_proxy",
+        action='store',
+        type=str
+    )
+
     return parser
 
 
@@ -110,7 +122,10 @@ distribution = args.distro
 distributionVers = args.version
 distributionName = args.name
 distributionWeb = args.homepage
-
+proxyDict = { 
+    "http"  : args.http_proxy,
+    "https" : args.https_proxy,
+    }
 
 # Output to Icinga
 
@@ -121,7 +136,7 @@ except:
     message['summary'] += "\nOS: Unknown | add --name"
     message['summary'] += "\nHomepage: Unknown | add --web"
 
-message['status'] += check(distribution, distributionVers)
+message['status'] += check(distribution, distributionVers,proxyDict)
 print("{summary}".format(
     summary=message.get('summary'),
 ))
