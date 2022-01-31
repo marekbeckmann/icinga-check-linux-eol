@@ -20,8 +20,7 @@ UNKNOWN = 3
 # Icinga Message
 message = {
     'status': OK,
-    'summary': 'Example summary',
-    'perfdata': 'label1=0;;;; '
+    'summary': 'Lifecycle Information: ',
 }
 
 # API Check
