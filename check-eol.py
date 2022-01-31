@@ -127,8 +127,9 @@ distribution = args.distro
 distributionVers = args.version
 distributionName = args.name
 distributionWeb = args.homepage
+proxyDict=""
 if bool(args.http_proxy) or bool(args.https_proxy):
-    proxyDict = { 
+    proxyDict += { 
         "http"  : args.http_proxy,
         "https" : args.https_proxy,
         }
