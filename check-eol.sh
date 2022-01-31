@@ -78,3 +78,4 @@ function init() {
 }
 
 init "$@"
+#Test
