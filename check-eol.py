@@ -50,13 +50,13 @@ def check(distribution, distributionVers):
             eoldate = datetime.strptime(el["eol"], "%Y-%m-%d").date()
             if eoldate > present:
                 status = OK
-                message['summary'] += 'EOL: ' + el["eol"]
-                message['summary'] += 'Version Info: ' + el["link"]
+                message['summary'] += '\nEOL: ' + el["eol"]
+                message['summary'] += '\nVersion Info: ' + el["link"]
                 break
             else:
                 status = CRITICAL
-                message['summary'] += 'EOL: ' + el["eol"]
-                message['summary'] += 'Version Info: ' + el["link"]
+                message['summary'] += '\nEOL: ' + el["eol"]
+                message['summary'] += '\nVersion Info: ' + el["link"]
                 break
         else:
             status = UNKNOWN
@@ -121,7 +121,6 @@ except:
     message['summary'] += "\nOS: Unknown | add --name"
     message['summary'] += "\nHomepage: Unknown | add --web"
 
-#message['summary'] += "\nMore lifecyle info: https://endoflife.date/" + distribution
 message['status'] += check(distribution, distributionVers)
 print("{summary}".format(
     summary=message.get('summary'),
